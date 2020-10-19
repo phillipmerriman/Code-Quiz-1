@@ -11,6 +11,12 @@ THEN the game is over
 WHEN the game is over
 THEN I can save my initials and score
 
+create initial homepage in html
+add bootstrap
+create array of questions and answers
+create score variable
+creat timer
+create scoreboard
 */
 let questions = [
     {
@@ -59,5 +65,6 @@ let questions = [
         ]
     }
 ]
+let score = 0;
 
 console.log(questions);
