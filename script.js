@@ -11,60 +11,94 @@ THEN the game is over
 WHEN the game is over
 THEN I can save my initials and score
 
-create initial homepage in html
-add bootstrap
+create initial welcome/homepage in html
+-h1 with title
+-explanation of quiz
+-start button
+
+create question page
+-create ul and buttons for multiple choice answers
+
+create "all done!" page
+
+create scoreboard
+
 create array of questions and answers
 create score variable
 creat timer
-create scoreboard
 */
 let questions = [
     {
-        question: "",
+        question: "1 Riddle me this?",
         answers: [
-            "",
-            "",
-            "",
-            ""
+            "yes",
+            "no",
+            "maybe",
+            "so"
         ]
     },
     {
-        question: "",
+        question: "2 Riddle me this?",
         answers: [
-            "",
-            "",
-            "",
-            ""
+            "yes",
+            "no",
+            "maybe",
+            "so"
         ]
     },
     {
-        question: "",
+        question: "3 Riddle me this?",
         answers: [
-            "",
-            "",
-            "",
-            ""
+            "yes",
+            "no",
+            "maybe",
+            "so"
         ]
     },
     {
-        question: "",
+        question: "4 Riddle me this?",
         answers: [
-            "",
-            "",
-            "",
-            ""
+            "yes",
+            "no",
+            "maybe",
+            "so"
         ]
     },
     {
-        question: "",
+        question: "5 Riddle me this?",
         answers: [
-            "",
-            "",
-            "",
-            ""
+            "yes",
+            "no",
+            "maybe",
+            "so"
         ]
-    }
+    },
 ]
-let score = 0;
+let welcome = document.querySelector("#welcome");
+let allDone = document.querySelector("#all-done");
+let start = document.querySelector("#start");
+let timerEl = document.querySelector("#timer");
 
+let score = 0;
+let secondsLeft = 60;
+
+start.addEventListener("click", function (e) {
+    welcome.setAttribute("style", "visibility: hidden;")
+    startTimer();
+})
+
+function renderQuestions () {
+    
+}
+
+function startTimer () {
+    let timerInterval = setInterval(function(){
+        secondsLeft--;
+        timerEl.textContent = "Time: " + secondsLeft;
+        if (secondsLeft === 0) {
+            clearInterval(timerInterval);
+            allDone.setAttribute("style", "visibility: visible;")
+        }
+    }, 1000)
+}
 console.log(questions);
