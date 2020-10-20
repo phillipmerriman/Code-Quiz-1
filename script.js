@@ -31,7 +31,7 @@ let questions = [
     {
         question: "1 Riddle me this?",
         answers: [
-            "yes",
+            "yes 1",
             "no",
             "maybe",
             "so"
@@ -42,21 +42,21 @@ let questions = [
         question: "2 Riddle me this?",
         answers: [
             "yes",
-            "no",
+            "no 2",
             "maybe",
             "so"
         ],
-        correctAnswer: 0
+        correctAnswer: 1
     },
     {
         question: "3 Riddle me this?",
         answers: [
             "yes",
             "no",
-            "maybe",
+            "maybe 3",
             "so"
         ],
-        correctAnswer: 0
+        correctAnswer: 2
     },
     {
         question: "4 Riddle me this?",
@@ -64,9 +64,9 @@ let questions = [
             "yes",
             "no",
             "maybe",
-            "so"
+            "so 4"
         ],
-        correctAnswer: 0
+        correctAnswer: 3
     },
     {
         question: "5 Riddle me this?",
@@ -74,9 +74,9 @@ let questions = [
             "yes",
             "no",
             "maybe",
-            "so"
+            "so 5"
         ],
-        correctAnswer: 0
+        correctAnswer: 3
     },
 ]
 
@@ -85,10 +85,11 @@ let allDone = document.querySelector("#all-done");
 let start = document.querySelector("#start");
 let timerEl = document.querySelector("#timer");
 let questionAnswers = document.querySelector("#questions");
-console.log(welcome);
-console.log(questionAnswers);
+let finalScore = document.querySelector("#final-score");
+let goBack = document.querySelector("#go-back");
 
 let score = 0;
+let questionNumber = 0;
 let secondsLeft = 4;
 
 start.addEventListener("click", function (e) {
@@ -97,26 +98,52 @@ start.addEventListener("click", function (e) {
     renderQuestions();
 })
 
+// function renderQuestions () {
+//     let questionEl = document.querySelector(".question");
+//     let answerEl = document.querySelector(".answers");
+//     for (let i = 0; i < questions.length; i++) {
+//         let question = questions[i].question;
+//         let answers = questions[i].answers[i];
+//         let correctAnswser = questions[i].correctAnswer;
+//         let qDiv = document.createElement("div");
+//         let aLi = document.createElement("li");
+//         let answerButton = document.createElement("button");
+//         qDiv.textContent = question;
+//         answerButton.textContent = answers;
+//         aLi.append(answerButton);
+//         questionEl.appendChild(qDiv);
+//         answerEl.appendChild(aLi);
+//     }
+// }
+
 function renderQuestions () {
     let questionEl = document.querySelector(".question");
     let answerEl = document.querySelector(".answers");
+    let qDiv = document.createElement("div");
+    let question = questions[questionNumber].question;
+
     for (let i = 0; i < questions.length; i++) {
-        let question = questions[i].question;
         let answers = questions[i].answers[i];
         let correctAnswser = questions[i].correctAnswer;
-        let qDiv = document.createElement("div");
-        let aLi = document.createElement("li");
+        let answerLi = document.createElement("li");
         let answerButton = document.createElement("button");
         qDiv.textContent = question;
         answerButton.textContent = answers;
-        aLi.append(answerButton);
+        answerLi.append(answerButton);
         questionEl.appendChild(qDiv);
-        answerEl.appendChild(aLi);
+        answerEl.appendChild(answerLi);
+        answerButton.addEventListener("click", function (e) {
+            console.log(e);
+            qDiv.textContent = "";
+            answerEl.textContent = "";
+            renderQuestions();
+        })
     }
+    questionNumber++;
 }
 
 function clearQuestions () {
-    questionAnswers.setAttribute("style", "visibility: hidden;");
+    questionAnswers.setAttribute("style", "display: none;");
 }
 
 function startTimer () {
@@ -126,6 +153,7 @@ function startTimer () {
         if (secondsLeft === 0) {
             clearInterval(timerInterval);
             clearQuestions();
+            finalScore.textContent = "Final Score: " + secondsLeft;
             allDone.setAttribute("style", "visibility: visible;")
         }
     }, 1000)
