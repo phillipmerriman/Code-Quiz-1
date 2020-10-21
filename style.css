@@ -13,3 +13,7 @@ h1 {
 #all-done {
     visibility: hidden;
 }
+
+#questions {
+    visibility: hidden;
+}

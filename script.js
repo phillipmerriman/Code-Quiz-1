@@ -93,29 +93,14 @@ let questionNumber = 0;
 let secondsLeft = 90;
 
 start.addEventListener("click", function (e) {
-    welcome.setAttribute("style", "visibility: hidden;")
+    welcome.setAttribute("style", "visibility: hidden;");
     startTimer();
     renderQuestions();
 })
 
-// function renderQuestions () {
-//     let questionEl = document.querySelector(".question");
-//     let answerEl = document.querySelector(".answers");
-//     for (let i = 0; i < questions.length; i++) {
-//         let question = questions[i].question;
-//         let answers = questions[i].answers[i];
-//         let correctAnswser = questions[i].correctAnswer;
-//         let qDiv = document.createElement("div");
-//         let aLi = document.createElement("li");
-//         let answerButton = document.createElement("button");
-//         qDiv.textContent = question;
-//         answerButton.textContent = answers;
-//         aLi.append(answerButton);
-//         questionEl.appendChild(qDiv);
-//         answerEl.appendChild(aLi);
-//     }
-// }
+
 function renderQuestions () {
+    let qNode = document.querySelector("#questions");
     let questionEl = document.querySelector(".question");
     let answerEl = document.querySelector(".answers");
     let qDiv = document.createElement("div");
@@ -127,58 +112,34 @@ function renderQuestions () {
     console.log(answers.length);
     console.log("correctAnswer = " + correctAnswer);
 
+    qNode.setAttribute("style", "visibility: visible;")
+
     for (let i = 0; i < answers.length; i++){
-        let answerLi = document.createElement("li");
-        let answerButton = document.createElement("button");
-        let buttons = document.querySelectorAll("button");
+        let answerButton = document.querySelector("#answer-" + i);
+        console.log("answerButton = " + answerButton);
         answerButton.textContent = answers[i];
-        answerLi.append(answerButton);
-        answerEl.appendChild(answerLi);
-        buttons[i].id = i;
-        console.log("buttons[i] = " + buttons[i]);
         answerButton.addEventListener("click", function (e) {
-            let buttonClicked = e;
-            console.log(buttonClicked.srcElement);
-            // if(e.)
-            qDiv.textContent = "";
-            answerEl.textContent = "";
-            // renderQuestion2();
+            console.log(answerButton.id);
+            if(answerButton.id === "answer-" + correctAnswer) {
+                console.log("correct!");
+
+            } else {
+                secondsLeft = secondsLeft - 10;
+            }
+            
+            renderQuestions();
         })
     }
-
+    
     qDiv.textContent = question;
-    questionEl.appendChild(qDiv);
-
-    // let answerButtonEl = document.querySelector("button");
-
+    questionEl.appendChild(qDiv);    
     
     questionNumber++;
+    if(questionNumber > questions.length) {
+        qDiv.textContent = "";
+        answerEl.textContent = "";
+    }
 }
-// function renderQuestions () {
-//     let questionEl = document.querySelector(".question");
-//     let answerEl = document.querySelector(".answers");
-//     let qDiv = document.createElement("div");
-//     let question = questions[questionNumber].question;
-
-//     for (let i = 0; i < questions.length; i++) {
-//         let answers = questions[i].answers[i];
-//         let correctAnswser = questions[i].correctAnswer;
-//         let answerLi = document.createElement("li");
-//         let answerButton = document.createElement("button");
-//         qDiv.textContent = question;
-//         answerButton.textContent = answers;
-//         answerLi.append(answerButton);
-//         questionEl.appendChild(qDiv);
-//         answerEl.appendChild(answerLi);
-//         answerButton.addEventListener("click", function (e) {
-//             console.log(e);
-//             qDiv.textContent = "";
-//             answerEl.textContent = "";
-//             renderQuestions();
-//         })
-//     }
-//     questionNumber++;
-// }
 
 
 function clearQuestions () {
