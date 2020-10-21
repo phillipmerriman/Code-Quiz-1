@@ -103,12 +103,11 @@ function renderQuestions () {
     let qNode = document.querySelector("#questions");
     let questionEl = document.querySelector(".question");
     let answerEl = document.querySelector(".answers");
-    let qDiv = document.createElement("div");
-    let question = questions[questionNumber].question;
+    let currentQuestion = questions[questionNumber].question;
     let answers = questions[questionNumber].answers;
     let correctAnswer = questions[questionNumber].correctAnswer;
 
-    console.log("question = " + question);
+    console.log("currentQuestion = " + currentQuestion);
     console.log(answers.length);
     console.log("correctAnswer = " + correctAnswer);
 
@@ -116,25 +115,27 @@ function renderQuestions () {
 
     for (let i = 0; i < answers.length; i++){
         let answerButton = document.querySelector("#answer-" + i);
-        console.log("answerButton = " + answerButton);
+        console.log("answerButton id = " + answerButton.id);
         answerButton.textContent = answers[i];
+        questionEl.textContent = currentQuestion;    
         answerButton.addEventListener("click", function (e) {
-            console.log(answerButton.id);
+            e.preventDefault();
+            questionNumber++;
+            console.log("e.target.id = " + e.target.id.split("-")[1]);
+            let userAnswer = e.target.id.split("-")[1];
             if(answerButton.id === "answer-" + correctAnswer) {
                 console.log("correct!");
+                renderQuestions();
 
             } else {
                 secondsLeft = secondsLeft - 10;
+                renderQuestions();
             }
             
-            renderQuestions();
         })
     }
     
-    qDiv.textContent = question;
-    questionEl.appendChild(qDiv);    
     
-    questionNumber++;
     if(questionNumber > questions.length) {
         qDiv.textContent = "";
         answerEl.textContent = "";
