@@ -29,12 +29,12 @@ creat timer
 */
 let questions = [
     {
-        question: "1 Riddle me this?",
+        question: "As a small child, Harriet received a severe injury to what part of her body?",
         answers: [
-            "yes 1",
-            "no",
-            "maybe",
-            "so"
+            "Head",
+            "ankle",
+            "neck",
+            "knee"
         ],
         correctAnswer: 0
     },
