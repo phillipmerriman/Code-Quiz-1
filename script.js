@@ -80,6 +80,8 @@ let questions = [
     },
 ]
 
+let highScores= [];
+
 let welcome = document.querySelector("#welcome");
 let allDone = document.querySelector("#all-done");
 let start = document.querySelector("#start");
@@ -91,6 +93,8 @@ let qNode = document.querySelector("#questions");
 let questionEl = document.querySelector(".question");
 let answerEl = document.querySelector(".answers");
 let submitScore = document.querySelector("#submit-score");
+let highScorePage = document.querySelector("#high");
+let highScoreOl = document.querySelector("#high-scores");
 
 let score = 0;
 let questionNumber = 0;
@@ -103,15 +107,22 @@ start.addEventListener("click", function (e) {
     renderQuestions();
 })
 
+goBack.addEventListener("click", function (e) {
+    welcome.setAttribute("style", "visibility: visible;");
+    highScorePage.setAttribute("style", "visibility: hidden:");
+})
+
 function handleClick(answer){
     console.log(answer + " was clicked");
     console.log("questionNumber = " + questionNumber);
     let correctAnswer = questions[questionNumber].correctAnswer;
-    questionNumber++;
-
+    // if(questionNumber < questions.length -1) {
+        questionNumber++;
+    // }
     if(questionNumber > questions.length - 1) {
         clearQuestions();
         allDone.setAttribute("style", "visibility: visible;");
+        
     }
     if(answer === correctAnswer) {
         console.log("correct!");
@@ -128,15 +139,13 @@ function renderQuestions () {
     
     console.log("currentQuestion = " + currentQuestion);
 
-    qNode.setAttribute("style", "visibility: visible;")
+    qNode.setAttribute("style", "visibility: visible;");
 
     for (let i = 0; i < answers.length; i++){
         let answerButton = document.querySelector("#answer-" + i);
-        console.log("answerButton id = " + answerButton.id);
         answerButton.textContent = answers[i];
         questionEl.textContent = currentQuestion;
-    }
-    
+    }  
     
 }
 
@@ -149,22 +158,28 @@ function renderHighScores () {
     //retrieve the last name/score
     let localName = localStorage.getItem("name");
     let localScore = localStorage.getItem("score");
-    let highScorePage = document.querySelector("#high");
-    let highScoreOl = document.querySelector("#high-scores");
     let newLiEl = document.createElement("li");
+    let hScores = {
+        name,
+        score
+    };
     console.log("name = " + localName + " score = " + localScore);
     console.log("highScoreOl = " + highScoreOl);
-
+    hScores.name = localName;
+    hScores.score = localScore;
+    console.log(hScores);
     //if they are null, return early from this function
     if (localName === null && localScore === null) {
         return;
     }
     
     //else set the text of name and score to newLiEl and append if score is lower or prepend if score is higher
-    newLiEl.textContent = localName + localScore;
+    newLiEl.textContent = localName + " " + localScore;
     allDone.setAttribute("style", "display: none;");
     highScorePage.setAttribute("style", "visibility: visible;");
     highScoreOl.append(newLiEl);
+    highScores.push(hScores);
+    console.log(highScores);
 }
 
 submitScore.addEventListener("click", function (e) {
@@ -177,8 +192,30 @@ submitScore.addEventListener("click", function (e) {
     //save name and score to local storage
     localStorage.setItem("name", name);
     localStorage.setItem("score", secondsLeft);
+    questionNumber = 0;
     renderHighScores();
 })
+
+submitScore.addEventListener("keydown", function (e) {
+    e.preventDefault();
+    let name = document.querySelector("#fname").value;
+    if (name === "") {
+        alert("Please enter a name.");
+    }
+
+    //save name and score to local storage
+    localStorage.setItem("name", name);
+    localStorage.setItem("score", secondsLeft);
+    renderHighScores();
+})
+
+
+function viewHighScores () {
+    welcome.setAttribute("style", "visibility: hidden");
+    questionAnswers.setAttribute("style", "visibility: hidden");
+    allDone.setAttribute("style", "visibility: hidden");
+    renderHighScores();
+}
 
 function startTimer () {
     let timerInterval = setInterval(function(){
