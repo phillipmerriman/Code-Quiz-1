@@ -39,42 +39,42 @@ let questions = [
         correctAnswer: 0
     },
     {
-        question: "2 Riddle me this?",
+        question: "Which of these types of disguises did she NOT employ on her first successful attempt to escape from slavery?",
         answers: [
-            "yes",
-            "no 2",
-            "maybe",
-            "so"
+            "field hand",
+            "confederate soldier",
+            "house servant",
+            "pretended to read a newspaper"
         ],
         correctAnswer: 1
     },
     {
-        question: "3 Riddle me this?",
+        question: "Harriet joined the union army as a nurse, but also acted as what behind enemy lines?",
         answers: [
-            "yes",
-            "no",
-            "maybe 3",
-            "so"
+            "private",
+            "corporal",
+            "a scout and spy",
+            "sergeant major"
         ],
         correctAnswer: 2
     },
     {
-        question: "4 Riddle me this?",
+        question: "What is the highest amount of slaves she freed at once?",
         answers: [
-            "yes",
-            "no",
-            "maybe",
-            "so 4"
+            "106",
+            "78",
+            "40",
+            "over 700"
         ],
         correctAnswer: 3
     },
     {
-        question: "5 Riddle me this?",
+        question: "What year did Harriet die?",
         answers: [
-            "yes",
-            "no",
-            "maybe",
-            "so 5"
+            "1889",
+            "1900",
+            "1895",
+            "1913"
         ],
         correctAnswer: 3
     },
