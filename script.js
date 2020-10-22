@@ -90,6 +90,7 @@ let goBack = document.querySelector("#go-back");
 let qNode = document.querySelector("#questions");
 let questionEl = document.querySelector(".question");
 let answerEl = document.querySelector(".answers");
+let submitScore = document.querySelector("#submit-score");
 
 let score = 0;
 let questionNumber = 0;
@@ -143,6 +144,35 @@ function renderQuestions () {
 function clearQuestions () {
     questionAnswers.setAttribute("style", "display: none;");
 }
+
+function renderHighScores () {
+    //retrieve the last name/score
+    let localName = localStorage.getItem("name");
+    let localScore = localStorage.getItem("score");
+    let highScoreDiv = document.querySelector("#high-scores");
+    // let newDiv = highScoreDiv.createElement("div");
+    console.log("name = " + localName + " score = " + localScore);
+    console.log("highScoreDiv = " + highScoreDiv);
+    //if they are null, return early from this function
+    if (localName === null && localScore === null) {
+        return;
+    }
+    //else set the text of name and score to newDiv and append if score is lower or prepend if score is higher
+    highScoreDiv.textContent = localName + localScore;
+}
+
+submitScore.addEventListener("click", function (e) {
+    e.preventDefault();
+    let name = document.querySelector("#fname").value;
+    if (name === "") {
+        alert("Please enter a name.");
+    }
+
+    //save name and score to local storage
+    localStorage.setItem("name", name);
+    localStorage.setItem("score", secondsLeft);
+    renderHighScores();
+})
 
 function startTimer () {
     let timerInterval = setInterval(function(){
