@@ -18,3 +18,8 @@ h1 {
 #questions {
     visibility: hidden;
 }
+
+#high {
+    /* display: none; */
+    visibility: hidden; 
+}

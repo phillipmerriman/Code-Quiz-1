@@ -10,6 +10,33 @@
     <link href="style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
+    <!-- navigation bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+        <span class="w-100 d-lg-none d-block"><!-- hidden spacer to center brand on mobile --></span>
+        <a class="text-light" href="high.html">View High Scores</a>
+          <div class="text-light ml-auto" id="timer">Time: 90</div>
+        </div>
+        
+    </nav>
+    <!-- "All done!" final score -->
+    <div class="container text-light" id="all-done">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>All Done!</h1>
+                <h2 id="final-score">Final Score: </h2>
+            </div>
+        </div>
+        <!-- enter name for score board -->
+        <div class="row">
+            <div class="col-md-12">
+                <form>
+                    <label for="fname">Enter first name:</label><br>
+                    <input type="text" id="fname" name="fname"><br>
+                    <button><a href="high.html" id="submit-score">Submit Score</a></button>
+                  </form>
+            </div>
+        </div>
+    </div>
     <!-- High Scores -->
     <div class="container">
         <div class="row">

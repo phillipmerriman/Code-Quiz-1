@@ -69,12 +69,12 @@ let questions = [
         correctAnswer: 3
     },
     {
-        question: "What year did Harriet die?",
+        question: "Approximately how many trips BACK into slavery did Harriet make in order to free more slaves?",
         answers: [
-            "1889",
-            "1900",
-            "1895",
-            "1913"
+            "6",
+            "4",
+            "9",
+            "13"
         ],
         correctAnswer: 3
     },
@@ -149,16 +149,22 @@ function renderHighScores () {
     //retrieve the last name/score
     let localName = localStorage.getItem("name");
     let localScore = localStorage.getItem("score");
-    let highScoreDiv = document.querySelector("#high-scores");
-    // let newDiv = highScoreDiv.createElement("div");
+    let highScorePage = document.querySelector("#high");
+    let highScoreOl = document.querySelector("#high-scores");
+    let newLiEl = document.createElement("li");
     console.log("name = " + localName + " score = " + localScore);
-    console.log("highScoreDiv = " + highScoreDiv);
+    console.log("highScoreOl = " + highScoreOl);
+
     //if they are null, return early from this function
     if (localName === null && localScore === null) {
         return;
     }
-    //else set the text of name and score to newDiv and append if score is lower or prepend if score is higher
-    highScoreDiv.textContent = localName + localScore;
+    
+    //else set the text of name and score to newLiEl and append if score is lower or prepend if score is higher
+    newLiEl.textContent = localName + localScore;
+    allDone.setAttribute("style", "display: none;");
+    highScorePage.setAttribute("style", "visibility: visible;");
+    highScoreOl.append(newLiEl);
 }
 
 submitScore.addEventListener("click", function (e) {
