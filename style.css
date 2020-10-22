@@ -12,6 +12,7 @@ h1 {
 
 #all-done {
     visibility: hidden;
+    text-align: center;
 }
 
 #questions {

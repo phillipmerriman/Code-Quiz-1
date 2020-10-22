@@ -87,10 +87,14 @@ let timerEl = document.querySelector("#timer");
 let questionAnswers = document.querySelector("#questions");
 let finalScore = document.querySelector("#final-score");
 let goBack = document.querySelector("#go-back");
+let qNode = document.querySelector("#questions");
+let questionEl = document.querySelector(".question");
+let answerEl = document.querySelector(".answers");
 
 let score = 0;
 let questionNumber = 0;
 let secondsLeft = 90;
+let stopTimer = false;
 
 start.addEventListener("click", function (e) {
     welcome.setAttribute("style", "visibility: hidden;");
@@ -98,18 +102,30 @@ start.addEventListener("click", function (e) {
     renderQuestions();
 })
 
+function handleClick(answer){
+    console.log(answer + " was clicked");
+    console.log("questionNumber = " + questionNumber);
+    let correctAnswer = questions[questionNumber].correctAnswer;
+    questionNumber++;
+
+    if(questionNumber > questions.length - 1) {
+        clearQuestions();
+        allDone.setAttribute("style", "visibility: visible;");
+    }
+    if(answer === correctAnswer) {
+        console.log("correct!");
+        renderQuestions();        
+    } else {
+        secondsLeft = secondsLeft - 10;
+        renderQuestions();
+    }
+}
 
 function renderQuestions () {
-    let qNode = document.querySelector("#questions");
-    let questionEl = document.querySelector(".question");
-    let answerEl = document.querySelector(".answers");
     let currentQuestion = questions[questionNumber].question;
     let answers = questions[questionNumber].answers;
-    let correctAnswer = questions[questionNumber].correctAnswer;
-
+    
     console.log("currentQuestion = " + currentQuestion);
-    console.log(answers.length);
-    console.log("correctAnswer = " + correctAnswer);
 
     qNode.setAttribute("style", "visibility: visible;")
 
@@ -117,29 +133,10 @@ function renderQuestions () {
         let answerButton = document.querySelector("#answer-" + i);
         console.log("answerButton id = " + answerButton.id);
         answerButton.textContent = answers[i];
-        questionEl.textContent = currentQuestion;    
-        answerButton.addEventListener("click", function (e) {
-            e.preventDefault();
-            questionNumber++;
-            console.log("e.target.id = " + e.target.id.split("-")[1]);
-            let userAnswer = e.target.id.split("-")[1];
-            if(answerButton.id === "answer-" + correctAnswer) {
-                console.log("correct!");
-                renderQuestions();
-
-            } else {
-                secondsLeft = secondsLeft - 10;
-                renderQuestions();
-            }
-            
-        })
+        questionEl.textContent = currentQuestion;
     }
     
     
-    if(questionNumber > questions.length) {
-        qDiv.textContent = "";
-        answerEl.textContent = "";
-    }
 }
 
 
@@ -151,7 +148,7 @@ function startTimer () {
     let timerInterval = setInterval(function(){
         secondsLeft--;
         timerEl.textContent = "Time: " + secondsLeft;
-        if (secondsLeft === 0) {
+        if (secondsLeft === 0 || questionNumber > questions.length - 1) {
             clearInterval(timerInterval);
             clearQuestions();
             finalScore.textContent = "Final Score: " + secondsLeft;

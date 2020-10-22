@@ -35,24 +35,20 @@
             <div class="col-md-12">
                 <h1 class="question"></h1>
                 <div class="answers">
-                    <button id="answer-0"></button><br>
-                    <button id="answer-1"></button><br>
-                    <button id="answer-2"></button><br>
-                    <button id="answer-3"></button>
+                    <button id="answer-0" onclick="handleClick(0)"></button><br>
+                    <button id="answer-1" onclick="handleClick(1)"></button><br>
+                    <button id="answer-2" onclick="handleClick(2)"></button><br>
+                    <button id="answer-3" onclick="handleClick(3)"></button>
                 </div>
             </div>
         </div>
     </div>
-    <!-- "All done!" -->
+    <!-- "All done!" final score -->
     <div class="container text-light" id="all-done">
         <div class="row">
-            <div class="col-md-12"></div>
-            <h1>All Done!</h1>
-        </div>
-        <!-- final score -->
-        <div class="row">
             <div class="col-md-12">
-            <h2 id="final-score">Final Score: </h2>
+                <h1>All Done!</h1>
+                <h2 id="final-score">Final Score: </h2>
             </div>
         </div>
         <!-- enter name for score board -->
