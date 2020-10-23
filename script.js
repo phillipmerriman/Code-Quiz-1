@@ -180,6 +180,8 @@ function renderHighScores () {
     highScoreOl.append(newLiEl);
     highScores.push(hScores);
     console.log(highScores);
+    secondsLeft = 90;
+    timerEl.textContent = "Time: " + secondsLeft;
 }
 
 submitScore.addEventListener("click", function (e) {
