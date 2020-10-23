@@ -95,6 +95,7 @@ let answerEl = document.querySelector(".answers");
 let submitScore = document.querySelector("#submit-score");
 let highScorePage = document.querySelector("#high");
 let highScoreOl = document.querySelector("#high-scores");
+let clearScores = document.querySelector("#clear-scores");
 
 let score = 0;
 let questionNumber = 0;
@@ -113,8 +114,6 @@ goBack.addEventListener("click", function (e) {
 })
 
 function handleClick(answer){
-    console.log(answer + " was clicked");
-    console.log("questionNumber = " + questionNumber);
     let correctAnswer = questions[questionNumber].correctAnswer;
     // if(questionNumber < questions.length -1) {
         questionNumber++;
@@ -136,8 +135,6 @@ function handleClick(answer){
 function renderQuestions () {
     let currentQuestion = questions[questionNumber].question;
     let answers = questions[questionNumber].answers;
-    
-    console.log("currentQuestion = " + currentQuestion);
 
     qNode.setAttribute("style", "visibility: visible;");
 
@@ -154,20 +151,19 @@ function clearQuestions () {
     questionAnswers.setAttribute("style", "display: none;");
 }
 
+let hScores = {
+    name,
+    score
+};
+
 function renderHighScores () {
     //retrieve the last name/score
     let localName = localStorage.getItem("name");
     let localScore = localStorage.getItem("score");
     let newLiEl = document.createElement("li");
-    let hScores = {
-        name,
-        score
-    };
-    console.log("name = " + localName + " score = " + localScore);
-    console.log("highScoreOl = " + highScoreOl);
+    let higher = localScore > hScores.score;
     hScores.name = localName;
     hScores.score = localScore;
-    console.log(hScores);
     //if they are null, return early from this function
     if (localName === null && localScore === null) {
         return;
@@ -177,9 +173,12 @@ function renderHighScores () {
     newLiEl.textContent = localName + " " + localScore;
     allDone.setAttribute("style", "display: none;");
     highScorePage.setAttribute("style", "visibility: visible;");
-    highScoreOl.append(newLiEl);
+    if(higher) {
+        highScoreOl.prepend(newLiEl);
+    } else {
+        highScoreOl.append(newLiEl);
+    }
     highScores.push(hScores);
-    console.log(highScores);
     secondsLeft = 90;
     timerEl.textContent = "Time: " + secondsLeft;
 }
@@ -189,6 +188,7 @@ submitScore.addEventListener("click", function (e) {
     let name = document.querySelector("#fname").value;
     if (name === "") {
         alert("Please enter a name.");
+        return;
     }
 
     //save name and score to local storage
@@ -196,6 +196,14 @@ submitScore.addEventListener("click", function (e) {
     localStorage.setItem("score", secondsLeft);
     questionNumber = 0;
     renderHighScores();
+})
+
+// clear scores button event listener
+clearScores.addEventListener("click", function (e) {
+    // highScoreOl.innerHTML("");
+    e.preventDefault();
+    // window.localStorage.removeItem(highScoreOl);
+    highScoreOl.removeChild("li");
 })
 
 submitScore.addEventListener("keydown", function (e) {
@@ -229,6 +237,5 @@ function startTimer () {
             finalScore.textContent = "Final Score: " + secondsLeft;
             allDone.setAttribute("style", "visibility: visible;")
         }
-    }, 1000)
+    }, 1000);
 }
-console.log(questions);

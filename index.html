@@ -10,70 +10,74 @@
     <link href="style.css" rel="stylesheet" type="text/css" />
 </head>
 <!-- background image from: https://www.toptal.com/designers/subtlepatterns/ -->
-<body style="background-image: url(images/wild_oliva.png)">
-        <!-- navigation bar -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-dark">
-            <span class="w-100 d-lg-none d-block"><!-- hidden spacer to center brand on mobile --></span>
-            <a class="text-light" href="#" onclick="viewHighScores()">View High Scores</a>
-              <div class="text-light ml-auto" id="timer">Time: 90</div>
-            </div>
-            
-        </nav>
-    <!-- Welcome page -->
-    <div class="container text-light" id="welcome">
-        <div class="row">
-            <div class="col-md-12">
-                <h1>Welcome to the Coding Quiz!</h1>
-                <p>Try to answer the following code related questions within the time limit. <br>Keep in mind that answering incorrectly will decrease the score/time by 10 seconds!</p>
-                <button id="start">Start</button>
-            </div>
+<!-- style="background-image: url(images/wild_oliva.png)" -->
+<body style="background-image: url(images/tubman-1.jpg)">
+    <!-- navigation bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+        <span class="w-100 d-lg-none d-block"><!-- hidden spacer to center brand on mobile --></span>
+        <a class="text-light" href="#" onclick="viewHighScores()">View High Scores</a>
+            <div class="text-light ml-auto" id="timer">Time: 90</div>
         </div>
-    </div>
-    <!-- Holder for question and answers -->
-    <div class="container text-light" id="questions">
-        <div class="row">
-            <div class="col-md-12">
-                <h1 class="question"></h1>
-                <div class="answers">
-                    <button id="answer-0" onclick="handleClick(0)"></button><br>
-                    <button id="answer-1" onclick="handleClick(1)"></button><br>
-                    <button id="answer-2" onclick="handleClick(2)"></button><br>
-                    <button id="answer-3" onclick="handleClick(3)"></button>
+        
+    </nav>
+    <div class="container" style="background-image: url(images/wild_oliva.png)">
+
+        <!-- Welcome page -->
+        <div class="container text-light" id="welcome">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Welcome to the Harriet Tubman Quiz!</h1>
+                    <p>Try to answer the following questions about the great Harriet Tubman within the time limit. <br>Keep in mind that answering incorrectly will decrease the score/time by 10 seconds!</p>
+                    <button id="start">Start</button>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- "All done!" final score -->
-    <div class="container text-light" id="all-done">
-        <div class="row">
-            <div class="col-md-12">
-                <h1>All Done!</h1>
-                <h2 id="final-score">Final Score: </h2>
+        <!-- Holder for question and answers -->
+        <div class="container text-light" id="questions">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="question"></h1>
+                    <div class="answers">
+                        <button id="answer-0" onclick="handleClick(0)"></button><br>
+                        <button id="answer-1" onclick="handleClick(1)"></button><br>
+                        <button id="answer-2" onclick="handleClick(2)"></button><br>
+                        <button id="answer-3" onclick="handleClick(3)"></button>
+                    </div>
+                </div>
             </div>
         </div>
-        <!-- enter name for score board -->
-        <div class="row">
-            <div class="col-md-12">
-                <form>
-                    <label for="fname">Enter first name:</label><br>
-                    <input type="text" id="fname" name="fname"><br>
-                    <button><a href="high.html" id="submit-score">Submit Score</a></button>
-                  </form>
+        <!-- "All done!" final score -->
+        <div class="container text-light" id="all-done">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>All Done!</h1>
+                    <h2 id="final-score">Final Score: </h2>
+                </div>
+            </div>
+            <!-- enter name for score board -->
+            <div class="row">
+                <div class="col-md-12">
+                    <form>
+                        <label for="fname">Enter first name:</label><br>
+                        <input type="text" id="fname" name="fname"><br>
+                        <button><a href="high.html" id="submit-score">Submit Score</a></button>
+                      </form>
+                </div>
             </div>
         </div>
-    </div>
-    <!-- High Scores -->
-    <div class="container text-light" id="high">
-        <div class="row">
-            <div class="col-md-12">
-                <h1>High Scores</h1>
-                <ol id="high-scores"></ol>
+        <!-- High Scores -->
+        <div class="container text-light" id="high">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>High Scores</h1>
+                    <ol id="high-scores"></ol>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <button id="go-back">Go Back</button>
-                <button>Clear High Scores</button>
+            <div class="row">
+                <div class="col-md-12">
+                    <button id="go-back">Go Back</button>
+                    <button id="clear-scores">Clear High Scores</button>
+                </div>
             </div>
         </div>
     </div>

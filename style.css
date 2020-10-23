@@ -1,5 +1,16 @@
 body {
+    background:
+     url(images/tubman-1.jpg)  ;  
+     background-repeat: round;
+     /* background-size: cover; */
+     /* top center / 200px 200px 
+     no-repeat                
+     fixed                    
+     padding-box              
+     content-box              
+     red;  */
     background-color: beige;
+    font-family: 'Gochi Hand', 'Montserrat';
 }
 
 .row {
@@ -8,6 +19,14 @@ body {
 
 h1 {
     text-align: center;
+}
+
+#start, #go-back, #clear-scores {
+    margin: 2%;
+}
+
+#answer-0, #answer-1, #answer-2, #answer-3, #fname {
+    margin: 5px;
 }
 
 #all-done {
